@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#080914">
-    <title>My Portfolio | Developer</title>
+    <title>Jahongir | Portfolio & Projects</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- AOS Animation -->
@@ -20,7 +20,1104 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* BASE & RESET */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            background-color: #080914;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        body {
+            position: relative;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* VANTA BACKGROUND CONTAINER */
+        #vanta-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* AMBIENT LIGHT GLOWS */
+        .ambient {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .ambient-one {
+            top: -100px;
+            left: -100px;
+            background: #6558ff;
+        }
+        .ambient-two {
+            bottom: 10%;
+            right: -100px;
+            background: #ff416c;
+        }
+
+        /* TYPOGRAPHY UTILITIES */
+        h1, h2, h3, .logo {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .outline-text {
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            background: rgba(8, 9, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: #6366f1; }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #6366f1;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-button {
+            padding: 10px 22px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* SECTIONS COMMON */
+        .section {
+            padding: 120px 8% 60px;
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 50px;
+        }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            color: #818cf8;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .section-heading h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+        .section-heading p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        /* TILT CARD GENERIC */
+        .tilt-card {
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+            min-height: 90vh;
+            padding-top: 140px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+        }
+        .eyebrow {
+            color: #818cf8;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero h1 .accent { color: #6366f1; }
+        .hero-description {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 520px;
+            margin-bottom: 30px;
+        }
+        .hero-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+        .hero-tags span {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .primary-button {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+        .primary-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
+        }
+        .secondary-button {
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        .hero-bottom {
+            display: flex;
+            gap: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 24px;
+        }
+        .mini-stat strong {
+            display: block;
+            font-size: 1.4rem;
+            color: #fff;
+        }
+        .mini-stat span {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-card {
+            width: 100%;
+            max-width: 360px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 16px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+        .profile-image {
+            width: 100%;
+            height: 380px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(15, 23, 42, 0.6);
+            position: relative;
+        }
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+        }
+        .image-placeholder i { font-size: 3rem; }
+
+        .profile-overlay {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8px;
+        }
+        .profile-overlay p { font-size: 0.75rem; color: #818cf8; font-weight: 700; }
+        .profile-overlay h3 { font-size: 1.4rem; color: #fff; }
+        .profile-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #818cf8;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 12px 18px;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 3;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .floating-card i { font-size: 1.4rem; color: #a855f7; }
+        .floating-card strong { display: block; font-size: 0.9rem; color: #fff; }
+        .floating-card span { font-size: 0.75rem; color: #94a3b8; }
+        .float-top { top: 10%; left: -30px; animation: floatAnim 4s ease-in-out infinite; }
+        .float-bottom { bottom: 10%; right: -20px; animation: floatAnim 4s ease-in-out infinite 2s; }
+
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .orbit-one { width: 420px; height: 420px; }
+        .orbit-two { width: 520px; height: 520px; }
+
+        .decorative-star {
+            position: absolute;
+            color: #a855f7;
+            font-size: 1.5rem;
+            z-index: 3;
+            animation: pulseStar 3s ease-in-out infinite alternate;
+        }
+        .star-one { top: 5%; right: 10%; }
+        .star-two { bottom: 5%; left: 5%; color: #6366f1; }
+
+        @keyframes pulseStar {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 1; }
+        }
+
+        .scroll-indicator {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-top: 40px;
+            transition: color 0.3s;
+        }
+        .scroll-indicator:hover { color: #818cf8; }
+        .scroll-indicator i { animation: bounce 2s infinite; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(6px); }
+            60% { transform: translateY(3px); }
+        }
+
+        /* TEAM SECTION CAROUSEL */
+        .carousel-wrapper {
+            position: relative;
+            margin-top: 20px;
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .carousel-caption {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            font-weight: 700;
+        }
+        .carousel-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        .carousel-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .carousel-btn:hover {
+            background: #6366f1;
+            border-color: #6366f1;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+        }
+
+        .team-carousel {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 20px;
+            scrollbar-width: none;
+        }
+        .team-carousel::-webkit-scrollbar { display: none; }
+
+        .person-card {
+            flex: 0 0 280px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 16px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+        .person-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .person-image {
+            width: 100%;
+            height: 260px;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            background: #0f172a;
+        }
+        .person-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .photo-hint {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(8, 9, 20, 0.7);
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            color: #cbd5e1;
+            backdrop-filter: blur(4px);
+        }
+        .person-number {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .person-info { margin-top: 16px; }
+        .person-role {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #818cf8;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .person-info h3 { font-size: 1.2rem; color: #fff; margin-bottom: 6px; }
+        .person-info p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 14px; }
+        .person-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 10px;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .carousel-progress {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .progress-track {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-track span {
+            display: block;
+            height: 100%;
+            width: 20%;
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        #carouselCounter { font-size: 0.85rem; color: #94a3b8; font-weight: 600; }
+
+        /* ========================================================= */
+        /* SECTION: PROJECTS (MENING LOYIHALARIM) - HIGH END DESIGN  */
+        /* ========================================================= */
+        .projects-section {
+            position: relative;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1.5px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.5), rgba(236, 72, 153, 0.2), transparent 70%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.4;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Mockup Frame Bar */
+        .browser-bar {
+            height: 38px;
+            background: rgba(8, 9, 20, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .browser-address {
+            font-size: 0.7rem;
+            color: #64748b;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 3px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: monospace;
+        }
+
+        /* Preview Image Container */
+        .project-preview {
+            position: relative;
+            width: 100%;
+            height: 230px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .project-preview-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center top;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .project-card:hover .project-preview-bg {
+            transform: scale(1.08);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 9, 20, 0.1) 0%, rgba(8, 9, 20, 0.85) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .view-btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: #ffffff;
+            color: #080914;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform: translateY(15px);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card:hover .view-btn {
+            transform: translateY(0);
+        }
+
+        .view-btn:hover {
+            background: #6366f1;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .project-status {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .status-live {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+        }
+
+        .status-dev {
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: #fbbf24;
+        }
+
+        /* Card Content */
+        .project-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .project-title {
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-pill {
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.04);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .tech-pill {
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(99, 102, 241, 0.08);
+            color: #a5b4fc;
+        }
+
+        .project-footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #818cf8;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: gap 0.3s ease;
+        }
+
+        .project-footer-link:hover {
+            gap: 14px;
+            color: #a855f7;
+        }
+
+        /* Mockup Background Fallbacks for projects */
+        .bg-bogdorchilik {
+            background-image: linear-gradient(rgba(8, 9, 20, 0.3), rgba(8, 9, 20, 0.7)), 
+                              url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80');
+        }
+
+        .bg-future-project {
+            background-image: linear-gradient(rgba(8, 9, 20, 0.4), rgba(8, 9, 20, 0.8)), 
+                              url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80');
+        }
+
+        /* FAMILY SECTION */
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+        .family-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 16px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .family-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(236, 72, 153, 0.5);
+            box-shadow: 0 15px 35px rgba(236, 72, 153, 0.2);
+        }
+        .family-image {
+            width: 100%;
+            height: 240px;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
+        }
+
+        /* Hover-to-Reveal Photo Effect */
+        .family-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            filter: blur(12px) scale(1.15);
+            transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+        }
+
+        .family-card:hover .family-image img {
+            opacity: 1;
+            filter: blur(0px) scale(1);
+        }
+
+        /* Mysterious Mask Cover overlay (Visible by default, hidden on hover) */
+        .family-cover {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px dashed rgba(236, 72, 153, 0.3);
+            border-radius: 14px;
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+        .family-cover i {
+            font-size: 2.2rem;
+            color: #f472b6;
+            transition: transform 0.4s ease;
+        }
+
+        .family-cover span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #cbd5e1;
+            text-transform: uppercase;
+        }
+
+        .family-card:hover .family-cover {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95);
+        }
+
+        .family-card:hover .family-cover i {
+            transform: scale(1.2);
+        }
+
+        .family-icon {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(236, 72, 153, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f472b6;
+            backdrop-filter: blur(6px);
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .family-card:hover .family-icon {
+            background: rgba(236, 72, 153, 0.8);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .family-info { margin-top: 16px; }
+        .family-info span { font-size: 0.7rem; font-weight: 700; color: #f472b6; letter-spacing: 1px; }
+        .family-info h3 { font-size: 1.2rem; color: #fff; margin: 4px 0; }
+        .family-info p { font-size: 0.85rem; color: #94a3b8; }
+
+        .family-quote {
+            margin-top: 50px;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+        .family-quote i { font-size: 2rem; color: #f472b6; margin-bottom: 12px; }
+        .family-quote p { font-size: 1.2rem; color: #e2e8f0; font-style: italic; }
+        .family-quote span { font-size: 0.85rem; color: #64748b; margin-top: 8px; display: block; }
+
+        /* CONTACT SECTION */
+        .contact-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.05));
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .contact-card {
+            background: rgba(8, 9, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+        }
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .phone-icon { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .telegram-icon { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .instagram-icon { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
+
+        .contact-text { text-align: left; flex: 1; }
+        .contact-text small { display: block; font-size: 0.7rem; color: #64748b; font-weight: 700; }
+        .contact-text strong { font-size: 0.95rem; }
+        .external-icon { color: #64748b; font-size: 0.85rem; }
+
+        .contact-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 30px 8%;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 9, 20, 0.9);
+        }
+        .back-top {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .back-top:hover {
+            background: #6366f1;
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-description, .hero-tags, .hero-buttons, .hero-bottom {
+                justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .orbit { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(8, 9, 20, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+            }
+            .nav-links.nav-open {
+                transform: translateY(0);
+            }
+            .menu-toggle { display: block; }
+            .nav-button { display: none; }
+            .hero h1 { font-size: 2.6rem; }
+            .contact-bottom { flex-direction: column; gap: 10px; }
+            .footer { flex-direction: column; gap: 15px; text-align: center; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 
 <body>
@@ -36,6 +1133,7 @@
         <nav class="nav-links">
             <a href="#home" class="active">Bosh sahifa</a>
             <a href="#team">IT jamoam</a>
+            <a href="#projects">Loyihalarim</a>
             <a href="#family">Oilam</a>
             <a href="#contact">Aloqa</a>
         </nav>
@@ -81,7 +1179,7 @@
                 </div>
 
                 <div class="hero-buttons">
-                    <a href="#team" class="primary-button">
+                    <a href="#projects" class="primary-button">
                         Ishlarimni ko‘rish
                         <i class="fa-solid fa-arrow-down"></i>
                     </a>
@@ -114,12 +1212,10 @@
                 <div class="orbit orbit-two"></div>
 
                 <div class="profile-card tilt-card">
-                    <!-- O'Z RASMINGNI SHU JOYGA QO'Y -->
                     <div class="profile-image">
-                        <!-- <img src="images/me.jpg" alt="Jahongir"> -->
                         <div class="image-placeholder">
                             <i class="fa-regular fa-image"></i>
-                            <span>Your photo here</span>
+                            <span><img src="./images/image copy 18.png" alt=""></span>
                         </div>
                     </div>
 
@@ -196,14 +1292,14 @@
                     <!-- CARD 1 -->
                     <article class="person-card tilt-card">
                         <div class="person-image">
-                            <!-- <img src="images/person1.jpg" alt="Ism 1"> -->
+                            <img src="./images/image copy 4.png" alt="Asilbek Xoliyorov" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Asilbek'">
                             <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 01</span>
                             <span class="person-number">01</span>
                         </div>
                         <div class="person-info">
-                            <span class="person-role">IT STUDENT</span>
-                            <h3>Ism Familiya</h3>
-                            <p>Bu yerga do‘sting haqida qisqacha ma'lumot yoz.</p>
+                            <span class="person-role">IT TEACHER</span>
+                            <h3>Mening Ustozim</h3>
+                            <p>Bu mening IT ustozim Asilbek Xoliyorov</p>
                             <div class="person-footer">
                                 <span>Our community</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -214,14 +1310,14 @@
                     <!-- CARD 2 -->
                     <article class="person-card tilt-card">
                         <div class="person-image">
-                            <!-- <img src="images/person2.jpg" alt="Ism 2"> -->
+                            <img src="./images/image copy 5.png" alt="Afruzbek" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Afruzbek'">
                             <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 02</span>
                             <span class="person-number">02</span>
                         </div>
                         <div class="person-info">
                             <span class="person-role">IT STUDENT</span>
-                            <h3>Ism Familiya</h3>
-                            <p>Bu yerga do‘sting haqida qisqacha ma'lumot yoz.</p>
+                            <h3>Afruzbek</h3>
+                            <p>Bu Guruhimdagi Afruzbek</p>
                             <div class="person-footer">
                                 <span>Our community</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -232,14 +1328,14 @@
                     <!-- CARD 3 -->
                     <article class="person-card tilt-card">
                         <div class="person-image">
-                            <!-- <img src="images/person3.jpg" alt="Ism 3"> -->
+                            <img src="./images/image copy 6.png" alt="Nasimbek" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Nasimbek'">
                             <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 03</span>
                             <span class="person-number">03</span>
                         </div>
                         <div class="person-info">
                             <span class="person-role">IT STUDENT</span>
-                            <h3>Ism Familiya</h3>
-                            <p>Bu yerga do‘sting haqida qisqacha ma'lumot yoz.</p>
+                            <h3>Nasimbek</h3>
+                            <p>Bu guruhimdagi Nasimbek.</p>
                             <div class="person-footer">
                                 <span>Our community</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -250,14 +1346,14 @@
                     <!-- CARD 4 -->
                     <article class="person-card tilt-card">
                         <div class="person-image">
-                            <!-- <img src="images/person4.jpg" alt="Ism 4"> -->
+                            <img src="./images/image copy 7.png" alt="Botirxon" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Botirxon'">
                             <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 04</span>
                             <span class="person-number">04</span>
                         </div>
                         <div class="person-info">
                             <span class="person-role">IT STUDENT</span>
-                            <h3>Ism Familiya</h3>
-                            <p>Bu yerga do‘sting haqida qisqacha ma'lumot yoz.</p>
+                            <h3>Botirxon</h3>
+                            <p>Bu guruhimdagi Botirxon.</p>
                             <div class="person-footer">
                                 <span>Our community</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -265,23 +1361,168 @@
                         </div>
                     </article>
 
-                    <!-- CARD 5: KERAK BO'LSA DUPLICATE QIL -->
+                    <!-- CARD 5 -->
                     <article class="person-card tilt-card">
                         <div class="person-image">
-                            <!-- <img src="images/person5.jpg" alt="Ism 5"> -->
+                            <img src="./images/image copy 8.png" alt="Ibroxim" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Ibroxim'">
                             <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 05</span>
                             <span class="person-number">05</span>
                         </div>
                         <div class="person-info">
                             <span class="person-role">IT STUDENT</span>
-                            <h3>Ism Familiya</h3>
-                            <p>Bu yerga do‘sting haqida qisqacha ma'lumot yoz.</p>
+                            <h3>Ibroxim</h3>
+                            <p>Bu guruhimdagi Ibroxim</p>
                             <div class="person-footer">
                                 <span>Our community</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                         </div>
                     </article>
+
+                    <!-- CARD 6 -->
+                    <article class="person-card tilt-card">
+                        <div class="person-image">
+                            <img src="./images/image copy 9.png" alt="Sarvar" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Sarvar'">
+                            <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 06</span>
+                            <span class="person-number">06</span>
+                        </div>
+                        <div class="person-info">
+                            <span class="person-role">IT STUDENT</span>
+                            <h3>Sarvar</h3>
+                            <p>Bu guruhimdagi Sarvar</p>
+                            <div class="person-footer">
+                                <span>Our community</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CARD 7 -->
+                    <article class="person-card tilt-card">
+                        <div class="person-image">
+                            <img src="./images/image copy 10.png" alt="Ulug'bek" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Ulugbek'">
+                            <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 07</span>
+                            <span class="person-number">07</span>
+                        </div>
+                        <div class="person-info">
+                            <span class="person-role">IT STUDENT</span>
+                            <h3>Ulug'bek</h3>
+                            <p>Bu guruhimdagi Ulug'bek</p>
+                            <div class="person-footer">
+                                <span>Our community</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CARD 8 -->
+                    <article class="person-card tilt-card">
+                        <div class="person-image">
+                            <img src="./images/image copy 11.png" alt="Begzod" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Begzod'">
+                            <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 08</span>
+                            <span class="person-number">08</span>
+                        </div>
+                        <div class="person-info">
+                            <span class="person-role">IT STUDENT</span>
+                            <h3>Begzod</h3>
+                            <p>Bu guruhimdagi Begzod</p>
+                            <div class="person-footer">
+                                <span>Our community</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CARD 9 -->
+                    <article class="person-card tilt-card">
+                        <div class="person-image">
+                            <img src="./images/image copy 12.png" alt="Miraziz" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Miraziz'">
+                            <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 09</span>
+                            <span class="person-number">09</span>
+                        </div>
+                        <div class="person-info">
+                            <span class="person-role">IT STUDENT</span>
+                            <h3>Miraziz</h3>
+                            <p>Bu guruhimdagi Miraziz</p>
+                            <div class="person-footer">
+                                <span>Our community</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CARD 10 -->
+                    <article class="person-card tilt-card">
+                        <div class="person-image">
+                            <img src="./images/image copy 13.png" alt="Davron" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Davron'">
+                            <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 10</span>
+                            <span class="person-number">10</span>
+                        </div>
+                        <div class="person-info">
+                            <span class="person-role">IT STUDENT</span>
+                            <h3>Davron</h3>
+                            <p>Bu guruhimdagi Davron.</p>
+                            <div class="person-footer">
+                                <span>Our community</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CARD 11 -->
+                    <article class="person-card tilt-card">
+                        <div class="person-image">
+                            <img src="./images/image copy 14.png" alt="Amirbek" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Amirbek'">
+                            <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 11</span>
+                            <span class="person-number">11</span>
+                        </div>
+                        <div class="person-info">
+                            <span class="person-role">IT STUDENT</span>
+                            <h3>Amirbek</h3>
+                            <p>Bu guruhimdagi Amirbek.</p>
+                            <div class="person-footer">
+                                <span>Our community</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CARD 12 -->
+                    <article class="person-card tilt-card">
+                        <div class="person-image">
+                            <img src="./images/image copy 19.png" alt="Amirxon" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Marjona'">
+                            <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 12</span>
+                            <span class="person-number">12</span>
+                        </div>
+                        <div class="person-info">
+                            <span class="person-role">IT STUDENT</span>
+                            <h3>Amirxan</h3>
+                            <p>Bu guruhimdagi Amirxan.</p>
+                            <div class="person-footer">
+                                <span>Our community</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                     <!-- CARD 13 -->
+                    <article class="person-card tilt-card">
+                        <div class="person-image">
+                            <img src="./images/image copy 15.png" alt="Marjona" onerror="this.src='https://placehold.co/400x500/1e293b/818cf8?text=Marjona'">
+                            <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo 13</span>
+                            <span class="person-number">12</span>
+                        </div>
+                        <div class="person-info">
+                            <span class="person-role">IT STUDENT</span>
+                            <h3>Marjona</h3>
+                            <p>Bu guruhimdagi Marjona.</p>
+                            <div class="person-footer">
+                                <span>Our community</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </article>
+
 
                 </div>
 
@@ -289,12 +1530,116 @@
                     <div class="progress-track">
                         <span id="carouselProgress"></span>
                     </div>
-                    <span id="carouselCounter">01 / 05</span>
+                    <span id="carouselCounter">01 / 12</span>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: FAMILY -->
+        <!-- NEW SECTION: PROJECTS (MENING LOYIHALARIM) -->
+        <section class="projects-section section" id="projects">
+
+            <div class="section-heading" data-aos="fade-up">
+                <span class="section-label">
+                    <i class="fa-solid fa-laptop-code"></i> MY CREATIONS
+                </span>
+
+                <h2>Mening <span class="gradient-text">Loyihalarim.</span></h2>
+
+                <p>
+                    Nazariy bilimlarni amaliyotda qo‘llab, yaratgan kreativ va
+                    zamonaviy veb-saytlarim hamda loyihalarim to‘plami.
+                </p>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- PROJECT CARD 1: BOG'DORCHILIK -->
+                <article class="project-card tilt-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="browser-bar">
+                        <div class="browser-dots">
+                            <span class="browser-dot dot-red"></span>
+                            <span class="browser-dot dot-yellow"></span>
+                            <span class="browser-dot dot-green"></span>
+                        </div>
+                        <div class="browser-address">bog-dorchilik-project.vercel.app</div>
+                        <i class="fa-solid fa-lock" style="font-size: 0.65rem; color: #10b981;"></i>
+                    </div>
+
+                    <div class="project-preview">
+                        <span class="project-status status-live">Live Project</span>
+                        <div class="project-preview-bg bg-bogdorchilik"></div>
+                        <div class="project-overlay">
+                            <a href="https://bog-dorchilik-project.vercel.app/index.html" target="_blank" rel="noopener noreferrer" class="view-btn">
+                                Saytni Ko'rish <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-content">
+                        <div>
+                            <h3 class="project-title">Bog'dorchilik Portali</h3>
+                            <p class="project-desc">
+                                Zamonaviy qishloq xo'jaligi va bog'dorchilik uchun mo'ljallangan, interaktiv hamda barcha qurilmalarga to'liq moslashuvchan veb-platforma.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-pill"><i class="fa-brands fa-html5"></i> HTML</span>
+                                <span class="tech-pill"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+                                <!-- <span class="tech-pill"><i class="fa-brands fa-js"></i> JavaScript</span> -->
+                                <!-- <span class="tech-pill"><i class="fa-solid fa-mobile-screen"></i> Responsive</span> -->
+                            </div>
+                        </div>
+
+                        <a href="https://bog-dorchilik-project.vercel.app/index.html" target="_blank" rel="noopener noreferrer" class="project-footer-link">
+                            Loyiha havolasini ochish <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PROJECT CARD 2: PLACEHOLDER / FUTURE PROJECT -->
+                <article class="project-card tilt-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="browser-bar">
+                        <div class="browser-dots">
+                            <span class="browser-dot dot-red"></span>
+                            <span class="browser-dot dot-yellow"></span>
+                            <span class="browser-dot dot-green"></span>
+                        </div>
+                        <div class="browser-address">my-next-big-idea.vercel.app</div>
+                        <i class="fa-solid fa-code-branch" style="font-size: 0.65rem; color: #f59e0b;"></i>
+                    </div>
+
+                    <div class="project-preview">
+                        <span class="project-status status-dev">In Progress</span>
+                        <div class="project-preview-bg bg-future-project"></div>
+                        <div class="project-overlay">
+                            <a href="#" class="view-btn" onclick="alert('Tez orada yangi havola joylashtiriladi!'); return false;">
+                                Tez Kunda <i class="fa-solid fa-clock"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-content">
+                        <div>
+                            <h3 class="project-title">Kreativ Web Ilova</h3>
+                            <p class="project-desc">
+                                Interaktiv interfeyslar, yuqori tezlik hamda eng so'nggi UI/UX mezonlari asosida tayyorlanayotgan navbatdagi innovatsion loyiham.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-pill"><i class="fa-solid fa-code"></i> Frontend</span>
+                                 <span class="tech-pill"><i class="fa-brands fa-css3-alt"></i> CSS</span>   
+                                <span class="tech-pill"><i class="fa-solid fa-layer-group"></i> Modern Web</span>
+                            </div>
+                        </div>
+
+                        <a href="#" class="project-footer-link" onclick="alert('Ushbu loyiha hozirda ishlab chiqilmoqda.'); return false;">
+                            Batafsil ma'lumot <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: FAMILY -->
         <section class="family-section section" id="family">
 
             <div class="section-heading" data-aos="fade-up">
@@ -305,8 +1650,8 @@
                 <h2>My <span class="gradient-text">Family.</span></h2>
 
                 <p>
-                    Menga kuch, motivatsiya va mehr beradigan
-                    eng qadrli insonlarim.
+                    Menga kuch, motivatsiya va mehr beradigan eng qadrli insonlarim. 
+                    <br><small style="color: #f472b6; font-size: 0.85rem;">(Rasmlarni ko'rish uchun ustiga keltiring)</small>
                 </p>
             </div>
 
@@ -314,8 +1659,11 @@
 
                 <article class="family-card" data-aos="fade-up">
                     <div class="family-image">
-                        <!-- <img src="images/father.jpg" alt="Dadam"> -->
-                        <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo</span>
+                        <div class="family-cover">
+                            <i class="fa-solid fa-eye-slash"></i>
+                            <span>Rasmni ko'rish</span>
+                        </div>
+                        <img src="./images/image copy 17.png" alt="Dadam" onerror="this.src='https://placehold.co/400x500/1e293b/f472b6?text=Dadam'">
                         <span class="family-icon"><i class="fa-solid fa-star"></i></span>
                     </div>
                     <div class="family-info">
@@ -327,21 +1675,27 @@
 
                 <article class="family-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="family-image">
-                        <img src="./images/image copy.png" alt="Onam">
-                        <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo</span>
+                        <div class="family-cover">
+                            <i class="fa-solid fa-eye-slash"></i>
+                            <span>Rasmni ko'rish</span>
+                        </div>
+                        <img src="./images/image copy.png" alt="Onam" onerror="this.src='https://placehold.co/400x500/1e293b/f472b6?text=Onam'">
                         <span class="family-icon"><i class="fa-solid fa-heart"></i></span>
                     </div>
                     <div class="family-info">
                         <span>MY ANGEL</span>
-                        <h3>Onam </h3>
+                        <h3>Onam</h3>
                         <p>Ism: Axmedova Sayyora</p>
                     </div>
                 </article>
 
                 <article class="family-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="family-image">
-                        <img src="images/image copy 3.png" alt="Oila a'zosi">
-                        <span class="photo-hint"><i class="fa-regular fa-image"></i> Photo</span>
+                        <div class="family-cover">
+                            <i class="fa-solid fa-eye-slash"></i>
+                            <span>Rasmni ko'rish</span>
+                        </div>
+                        <img src="./images/image copy 3.png" alt="Opam" onerror="this.src='https://placehold.co/400x500/1e293b/f472b6?text=Opam'">
                         <span class="family-icon"><i class="fa-solid fa-sparkles"></i></span>
                     </div>
                     <div class="family-info">
@@ -351,13 +1705,14 @@
                     </div>
                 </article>
 
-                <article class="family-card buvim" data-aos="fade-up">
+                <article class="family-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="family-image">
-                        <img src="images/image copy 2.png" alt="Buvim">
-
-                        <span class="family-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </span>
+                        <div class="family-cover">
+                            <i class="fa-solid fa-eye-slash"></i>
+                            <span>Rasmni ko'rish</span>
+                        </div>
+                        <img src="./images/image copy 2.png" alt="Buvim" onerror="this.src='https://placehold.co/400x500/1e293b/f472b6?text=Buvim'">
+                        <span class="family-icon"><i class="fa-solid fa-heart"></i></span>
                     </div>
 
                     <div class="family-info">
@@ -376,7 +1731,7 @@
             </div>
         </section>
 
-        <!-- SECTION 4: CONTACT -->
+        <!-- SECTION 5: CONTACT -->
         <section class="contact-section section" id="contact">
 
             <div class="contact-box" data-aos="zoom-in">
@@ -394,7 +1749,7 @@
 
                 <div class="contact-grid">
 
-                    <a href="tel:+998901234567" class="contact-card">
+                    <a href="tel:+998974009087" class="contact-card">
                         <span class="contact-icon phone-icon">
                             <i class="fa-solid fa-phone"></i>
                         </span>
@@ -405,7 +1760,7 @@
                         <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
                     </a>
 
-                    <a href="https://t.me/USERNAME" target="_blank" rel="noopener noreferrer" class="contact-card">
+                    <a href="https://t.me/tmm_7o7" target="_blank" rel="noopener noreferrer" class="contact-card">
                         <span class="contact-icon telegram-icon">
                             <i class="fa-brands fa-telegram"></i>
                         </span>
@@ -416,7 +1771,7 @@
                         <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
                     </a>
 
-                    <a href="https://www.instagram.com/USERNAME/" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.instagram.com/tmm_7o7/" target="_blank" rel="noopener noreferrer"
                         class="contact-card">
                         <span class="contact-icon instagram-icon">
                             <i class="fa-brands fa-instagram"></i>
@@ -504,7 +1859,6 @@
             });
         });
 
-        // CAROUSEL
         const carousel = document.getElementById("teamCarousel");
         const prevButton = document.getElementById("teamPrev");
         const nextButton = document.getElementById("teamNext");
@@ -581,11 +1935,11 @@
                     const x = (event.clientX - rect.left) / rect.width;
                     const y = (event.clientY - rect.top) / rect.height;
 
-                    const rotateY = (x - 0.5) * 7;
-                    const rotateX = (0.5 - y) * 7;
+                    const rotateY = (x - 0.5) * 8;
+                    const rotateX = (0.5 - y) * 8;
 
                     card.style.transform =
-                        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+                        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
                 });
 
                 card.addEventListener("mouseleave", () => {
